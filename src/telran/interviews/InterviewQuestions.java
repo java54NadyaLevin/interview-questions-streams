@@ -81,19 +81,15 @@ public class InterviewQuestions {
 		return res;
 	}
 
+	
 	public static boolean isAnagram(String word, String anagram) {
-		boolean result = false;
-		if (word.length() == anagram.length() && !word.equals(anagram)) {
-
-			Map<Integer, Long> wordCharsMap = word.chars().boxed()
-					.collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
-
-			Map<Integer, Long> anagramCharsMap = anagram.chars().boxed()
-					.collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
-
-			result = wordCharsMap.equals(anagramCharsMap);
-		}
-		return result;
+	
+		return word.length() == anagram.length() && !word.equals(anagram) ?  charsMap(word).equals(charsMap(anagram)) : false;
+	}
+	
+	private static Map<Integer, Long> charsMap(String string){
+		return string.chars().boxed()
+		.collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
 	}
 
 	public static List<DateRole> assignRoleDates(List<DateRole> rolesHistory, List<LocalDate> dates) {
@@ -108,6 +104,8 @@ public class InterviewQuestions {
 		return map.floorEntry(d) == null ? null : map.floorEntry(d).getValue();
 	}
 
+	
+	
 	public static void displayDigitsStatistics() {
 
 		new Random().ints(N_ELEMENTS, 0, Integer.MAX_VALUE).boxed().flatMapToInt(n -> String.valueOf(n).chars())
