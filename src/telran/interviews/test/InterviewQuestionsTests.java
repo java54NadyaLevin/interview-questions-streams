@@ -87,7 +87,7 @@ class InterviewQuestionsTests {
 		assertArrayEquals(expectedValues, actualValues);
 	}
 	@Test
-	void isAnagrmaTest() {
+	void isAnagramTest() {
 		String word = "hello";
 		assertTrue(isAnagram(word, "olleh"));
 		assertTrue(isAnagram(word, "elloh"));
@@ -107,12 +107,14 @@ class InterviewQuestionsTests {
 				DATE2, DATE3,
 				DATE4);
 		List<DateRole> expected =
-				List.of(new DateRole(DATE1, null), 
+				List.of(
+						new DateRole(DATE1, null), 
 						new DateRole(DATE2,ROLE2),
 						new DateRole(DATE3, ROLE2),
 						new DateRole(DATE4, ROLE3));
 		assertIterableEquals(expected, assignRoleDates(history, dates));
 	}
+
 	@Test
 	void displayDigitsStatisticsTest() {
 		displayDigitsStatistics();
