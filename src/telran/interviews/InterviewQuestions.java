@@ -110,22 +110,11 @@ public class InterviewQuestions {
 
 	public static void displayDigitsStatistics() {
 
-		new Random().ints(N_ELEMENTS, 0, Integer.MAX_VALUE).boxed()
-				.flatMapToInt(n -> String.valueOf(n).chars())
-				.mapToObj(c -> Character.getNumericValue(c))
-				.collect(Collectors.groupingBy(digit -> digit, TreeMap::new, Collectors.counting()))
-				.entrySet().stream()
-				.sorted(Map.Entry.<Integer, Long>comparingByValue().reversed())
-				.forEach(entry -> System.out.println(entry.getKey() + " -> " + entry.getValue()));
-
-		// TODO
-		// display out statistics in the following format (example)
-		/*
-		 * 1 -> <count of occurrences> 2 -> ..... .........
-		 */
-		// sorted by counts of occurrences in the descending order
-		// takes 1000000 random numbers in range [0-Integer.MAX_VALUE)
-		// one pipeline with no additional yours methods
+		new Random().ints(N_ELEMENTS, 0, Integer.MAX_VALUE).boxed().flatMapToInt(n -> String.valueOf(n).chars())
+				.mapToObj(ch -> ch - '0')
+				.collect(Collectors.groupingByConcurrent(digit -> digit, Collectors.counting()))
+				.entrySet().stream().sorted(Map.Entry.<Integer, Long>comparingByValue().reversed())
+				.forEach(entry -> System.out.printf("%d -> %d\n", entry.getKey(), entry.getValue()));
 
 	}
 }
