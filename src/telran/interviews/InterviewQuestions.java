@@ -83,7 +83,8 @@ public class InterviewQuestions {
 
 	
 	public static boolean isAnagram(String word, String anagram) {
-		return word.length() == anagram.length() && !word.equals(anagram) ?  charsMap(word).equals(charsMap(anagram)) : false;
+		return word !=null && anagram != null && word.length() == anagram.length() && !word.equals(anagram) 
+				?  charsMap(word).equals(charsMap(anagram)) : false;
 	}
 	
 	private static Map<Integer, Long> charsMap(String string){
